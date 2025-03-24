@@ -1,3 +1,5 @@
+# @author Jan Pandikow
+
 using TimerOutputs;
 using DataFrames;
 using LinearAlgebra;
