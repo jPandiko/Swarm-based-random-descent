@@ -1,29 +1,7 @@
 @doc"""
 This file provides the tested functions. Some functions require to an additional information of the dimension which they are used in.
+@author Jan Pandikow
 """
-
-@doc"""
-f1(x) calculates the value of f(x,y) = x^2 + y^2.
-@param x::[val1, val2] - x Value
-@returns f(x)
-"""
-function f1(x)
-    x1 = x[1];
-    x2 = x[2];
-    return x1^2 + x2^2;
-end
-
-@doc"""
-f2(x) calculates the value f(x,y) = (x-1)^2 + (y-1)^2.
-@param x::[val1, val2] - x_value
-@returns f(x)
-"""
-function f2(x)
-    x1 = x[1];
-    x2 = x[2];
-    return (x1-1)^2 + (x2-1)^2;
-end
-
 
 @doc"""
 This function calculates the value of the Rosenbrock-function.
