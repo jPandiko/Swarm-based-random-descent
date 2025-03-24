@@ -4,6 +4,7 @@
 
 using Zygote
 using DataFrames
+using LinearAlgebra
 
 @doc """
  This functions executes the ADAM method on from a set starting point. Works only for d=1.
@@ -59,44 +60,6 @@ function adam_sgl(alpha, beta_1, beta_2, eps, f, theta, tol)
     return dataStore
 end
 
-
-#--------------------------------------------------------------------------------------
-
-
-# d = 2
-# !!! note that for functions with higher dimension, the argument should be an array. There shouldn't be any additional parameters,
-#     but the coordinates. The values can be unpacked in the function itself.
-function f3(coods)
-    x = coods[1]
-    y = coods[2]
-    return (x - 0.5)^2 + (y - 0.5)^2
-end
-
-function f5(coods)
-    x = coods[1]
-    y = coods[2]
-    return sin(x) * cos(y)
-end
-
-function f6(coods)
-    x = coods[1]
-    y = coods[2]
-    return x^3 - x + y^3 - y
-end
-
-# d = 3
-function f4(coods)
-    x = coods[1]
-    y = coods[2]
-    z = coods[3]
-    return (x - 0.5)^2 + (y - 0.5)^2 + (z - 0.5)^2
-end
-
-
-#------------------------------------------------------------------------------
-
-using Zygote
-using LinearAlgebra
 
 @doc """
  This functions executes the ADAM method on from a set starting point.
@@ -214,27 +177,4 @@ function adam_test_version(alpha, beta_1, beta_2, eps, f, theta, tol)#
         counter += 1
     end
     return current_location
-end
-
-
-using LinearAlgebra
-include("functions.jl");
-# delete later
-function find_parting_point()
-    println("[+] started");
-    range = 4
-    dimension = 7
-    optimum = [1,1,1,1,1,1,1]
-    for j in 1:1000
-        # create start point
-        start = [rand() * 2 * range + optimum[i] - range for i in 1:dimension]
-        path = adam(0.001, 0.9, 0.999, 10^(-8), f_rosenbrock, start, 10^-7)
-        result = adam_test_version(0.001, 0.9, 0.999, 10^(-8), f_rosenbrock, start, 10^-7)
-        println(norm(result-path[end]));
-        if norm(result - path[end]) > 0.1
-            println(start)
-            break
-        end
-    end
-    println();
 end
