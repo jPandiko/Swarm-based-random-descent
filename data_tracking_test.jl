@@ -398,39 +398,3 @@ function run_all_tests_for_sbrd_without_convergence(func)
         println("[+] ", dimension, " done");
     end
 end
-
-function do_sbrd(f)
-    optimum = [-2.903534, -2.903534, -2.903534, -2.903534];
-    range = 3;
-    dimension = 4;
-
-    # parameter used for the algorithm
-    tolmass = 10e-4;
-    tolmerge = 10e-3;
-    tolres = 10e-4;
-    nmax = 200;
-    N = 100;
-    q = 2;
-    d = dimension;
-    # use range around the optimum -> move optimum in the center of start search area
-    a = optimum[1] - range;
-    b = optimum[1] + range;
-    gamma = 0.9
-    stepsize_start = 1;
-    lambda = 0.2; # sonst immer 1.
-    	
-    result = sbrd(tolmass, tolmerge, tolres, nmax, N, q, f, d, a,b, gamma, stepsize_start, lambda);
-    println(result);
-    result = sbrd_without_convergence(tolmass, tolmerge, tolres, nmax, N, q, f, d, a,b, gamma, stepsize_start, lambda);
-    println(result);
-    
-    """cnt = 0;
-    for i in 1:1000
-        erg = sbrd(tolmass, tolmerge, tolres, nmax, N, q, f, d, a,b, gamma, stepsize_start, lambda);
-        println(erg);
-        if norm(erg - [0,0]) < 0.1
-            cnt += 1;
-        end
-    end
-    println(cnt);"""
-end
