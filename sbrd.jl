@@ -4,30 +4,6 @@ using Zygote
 using LinearAlgebra
 using Distributions
 
-# functions
-
-
-@doc"""
-f1(x) calculates the value of f(x,y) = x^2 + y^2.
-@param x::[val1, val2] - x Value
-@returns f(x)
-"""
-function f1(x)
-    x1 = x[1];
-    x2 = x[2];
-    return x1^2 + x2^2;
-end
-
-@doc"""
-f2(x) calculates the value f(x,y) = (x-1)^2 + (y-1)^2.
-@param x::[val1, val2] - x_value
-@returns f(x)
-"""
-function f2(x)
-    x1 = x[1];
-    x2 = x[2];
-    return (x1-1)^2 + (x2-1)^2;
-end
 
 # helper functions.
 
@@ -579,26 +555,4 @@ function sbrd_without_convergence(tolmass, tolmerge, tolres, nmax, N, q, f, d, a
     end
     
     return best_p;
-end
-
-
-
-
-# delete later 
-function test(f, dimension, range)
-    # parameter used for the algorithm
-    tolmass = 10e-10;
-    tolmerge = 10e-10;
-    tolres = 10e-10;
-    nmax = 100;
-    N = 10;
-    q = 2;
-    d = dimension;
-    a = -range;
-    b = range;
-    gamma = 0.9
-    stepsize_start = 1;
-    lambda = 1;
-    result = sbrd(tolmass, tolmerge, tolres, nmax, N, q, f, d, a,b, gamma, stepsize_start, lambda);
-    return result;
 end
